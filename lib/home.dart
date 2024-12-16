@@ -422,7 +422,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       shrinkWrap: true,
                       physics: const BouncingScrollPhysics(),
                       padding: const EdgeInsets.all(10),
-                      childAspectRatio: 0.8,
+                      childAspectRatio: 0.9,
                       children: List.generate(productList.length, (index) {
                         final product = productList[index];
                         return GestureDetector(
