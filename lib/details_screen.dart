@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:testing/common.dart';
 import 'package:testing/home.dart';
 import 'package:testing/views/view_chat.dart';
+import 'package:testing/widgets/customer_signin.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   String name;
@@ -147,53 +148,65 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            widget.category == "product" ? Row(
-              children: [
-                _buildQuantityButton(Icons.remove, _decrementQuantity),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text(
-                    "$_quantity",
-                    style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                _buildQuantityButton(Icons.add, _incrementQuantity),
-              ],
-            ):
-            Text(""),
+            widget.category == "product"
+                ? Row(
+                    children: [
+                      _buildQuantityButton(Icons.remove, _decrementQuantity),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text(
+                          "$_quantity",
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      _buildQuantityButton(Icons.add, _incrementQuantity),
+                    ],
+                  )
+                : Text(""),
             widget.category == "product"
                 ? ElevatedButton(
-                    onPressed: () {
-                      // Add to cart logic
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 32, vertical: 12),
-                    ),
-                    child: const Text("Add to Cart"),
-                  )
-                : ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ViewChat(),
+                          builder: (context) => CustomerSignIn(),
                         ),
                       );
                     },
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: maincolor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 32, vertical: 12),
                     ),
-                    child: const Text("Chat"),
-                  ),
+                    child: const Text(
+                      "Add to Cart",
+                      style: TextStyle(color: seccolor),
+                    ),
+                  )
+                : ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ViewChat(),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: maincolor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 32, vertical: 12),
+                      ),
+                      child: const Text("Chat",style: TextStyle(color: seccolor),),
+                    ),
+                
           ],
         ),
       ],

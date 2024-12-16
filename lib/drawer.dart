@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:testing/views/view_favorite.dart';
+import 'package:testing/views/view_sell.dart';
 
 class MainDrawer extends StatefulWidget {
-  const MainDrawer({super.key});
+  const MainDrawer({super.key, required this.favoriteList});
+  final List<Map<String, dynamic>> favoriteList;
 
   @override
   State<MainDrawer> createState() => _MainDrawerState();
@@ -51,28 +54,25 @@ class _MainDrawerState extends State<MainDrawer> {
           ),
           ListTile(
             leading: const Icon(Icons.home_repair_service),
-            title: const Text('Home Renovation'),
-            onTap: () {},
+            title: const Text('Favorite'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ViewFavorite(
+                    favoriteList: widget.favoriteList,
+                  ),
+                ),
+              );
+            },
           ),
           ListTile(
             leading: const Icon(Icons.cleaning_services),
-            title: const Text('Aircon Service'),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: const Icon(Icons.plumbing),
-            title: const Text('Plumber'),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: const Icon(Icons.electrical_services),
-            title: const Text('Electrical'),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: const Icon(Icons.car_repair),
-            title: const Text('Car Workshops'),
-            onTap: () {},
+            title: const Text('Sell'),
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => ViewSell()));
+            },
           ),
         ],
       ),
